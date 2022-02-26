@@ -1,0 +1,45 @@
+用户表
+create table users(
+id int(20) primary key,
+password varchar(20) unique,
+uname varchar(15) unique,
+phone int(14)  unique,
+email varchar(30) unique,
+created_date datetime,
+birthday datetime ,
+signature varchar(30),
+sex varchar(5),
+location varchar(30),
+constellation varchar(8),
+age int(5),
+avatar varchar(20),
+occupation varchar(10)
+);
+
+用户标签
+create table user_label(
+id int(20) primary key,
+label_name varchar(10) unique,
+user_id int(20),
+constraint kf_user_label_user_id foreign key(user_id) references users(id)
+);
+
+用户旅行表
+create table user_traveles(
+id int(20) primary key,
+location varchar(30),
+times datetime comment '时间',
+traveled_date datetime comment '旅行时间',
+is_plan varchar(30) comment '计划',
+planning_date datetime comment '计划时间',
+user_id int(20),
+constraint kf_user_traveles_user_id foreign key(user_id) references users(id)
+);
+
+用户业余爱好表
+create table user_hobbies(
+id int(20) primary key,
+hobby_name varchar(20),
+user_id int(20),
+constraint kf_user_hobbies_user_id foreign key(user_id) references users(id)
+)comment '用户业余爱好';
